@@ -1,0 +1,27 @@
+Ask My Docs — Project Overview
+
+Ask My Docs is a full-stack document Q&A system. The primary purpose of this project is to allow users to upload their own documents and ask natural language questions about them. The system retrieves relevant passages from the uploaded documents and generates accurate, cited answers.
+
+Supported File Formats
+The system supports the following file formats for upload:
+- PDF (Portable Document Format)
+- TXT (Plain text files)
+- Markdown (.md files)
+- CSV (Comma-separated values)
+- Excel spreadsheets (.xlsx)
+- PowerPoint presentations (.pptx)
+
+All uploads are limited to 50 MB per file.
+
+Authentication
+Users must register with an email address and password. The system uses JWT (JSON Web Tokens) for authentication, with short-lived access tokens (30 minutes) and long-lived refresh tokens (30 days).
+
+Document Processing Pipeline
+When a document is uploaded, it is queued for asynchronous processing:
+1. The file is saved to local storage
+2. A Celery worker picks up the processing task
+3. The document is parsed to extract text
+4. The text is split into overlapping chunks (~512 tokens each)
+5. Each chunk is embedded using the BAAI/bge-small-en-v1.5 model
+6. Embeddings are stored in PostgreSQL with pgvector
+7. Full-text search vectors (tsvector) are computed for BM25 search
