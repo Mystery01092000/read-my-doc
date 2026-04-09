@@ -1,0 +1,72 @@
+name: Bug Report
+description: Something isn't working as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the form below.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: A clear description of the bug.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Step-by-step instructions to reproduce the issue.
+      placeholder: |
+        1. Upload a PDF file
+        2. Ask "What is..."
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: llm_provider
+    attributes:
+      label: LLM Provider
+      options:
+        - Ollama (self-hosted)
+        - Groq
+        - OpenAI
+    validations:
+      required: true
+
+  - type: input
+    id: llm_model
+    attributes:
+      label: LLM Model
+      placeholder: e.g. mistral, llama3-70b-8192, gpt-4o-mini
+
+  - type: input
+    id: docker_version
+    attributes:
+      label: Docker version
+      placeholder: e.g. Docker 24.0.5
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      placeholder: e.g. macOS 14, Ubuntu 22.04
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Paste any relevant logs from `make logs` or the browser console.
+      render: shell

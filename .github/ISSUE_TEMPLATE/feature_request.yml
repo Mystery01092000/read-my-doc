@@ -1,0 +1,46 @@
+name: Feature Request
+description: Suggest an improvement or new feature
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion! Please fill out the form below.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: A clear description of the problem or limitation you're experiencing.
+      placeholder: I'm always frustrated when...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe what you'd like to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Have you considered any alternative solutions?
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - RAG / Retrieval quality
+        - Document parsing / ingestion
+        - Chat / Streaming
+        - Authentication
+        - Frontend / UI
+        - Deployment / Infrastructure
+        - Other
+    validations:
+      required: true
