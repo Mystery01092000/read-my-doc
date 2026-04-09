@@ -1,0 +1,37 @@
+- main [ref=e37]:
+  - generic [ref=e38]:
+    - generic [ref=e39]:
+      - heading "ReadMyDoc" [level=1] [ref=e40]
+      - paragraph [ref=e41]: Create your account to get started.
+    - generic [ref=e43]:
+      - img [ref=e44]
+      - heading "Join ReadMyDoc." [level=2] [ref=e47]
+      - paragraph [ref=e48]: Upload documents and start chatting with your personal knowledge base instantly.
+    - generic [ref=e49]:
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - text: Full Name
+          - textbox "Your full name" [ref=e53]
+        - generic [ref=e54]:
+          - text: Phone (optional)
+          - textbox "+1 234 567 8900" [ref=e55]
+        - generic [ref=e56]:
+          - text: Email
+          - textbox "you@example.com" [ref=e57]
+        - generic [ref=e58]:
+          - text: Password
+          - textbox "Min. 8 characters" [ref=e59]
+        - generic [ref=e60]:
+          - text: Confirm Password
+          - textbox "••••••••" [ref=e61]
+        - button "Create Account" [ref=e63] [cursor=pointer]:
+          - text: Create Account
+          - img [ref=e64]
+      - generic [ref=e66]:
+        - link "Have an account? Sign In" [ref=e67] [cursor=pointer]:
+          - /url: /login
+          - generic [ref=e68]: Have an account?
+          - generic [ref=e69]: Sign In
+        - generic [ref=e70]:
+          - generic [ref=e71]: Version
+          - generic [ref=e72]: v2.4.1

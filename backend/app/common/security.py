@@ -1,20 +1,18 @@
 from datetime import UTC, datetime, timedelta
 from typing import Any
 
+import bcrypt
 from jose import JWTError, jwt
-from passlib.context import CryptContext
 
 from app.config import settings
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
 
 def hash_password(plain: str) -> str:
-    return pwd_context.hash(plain)
+    return bcrypt.hashpw(plain.encode(), bcrypt.gensalt()).decode()
 
 
 def verify_password(plain: str, hashed: str) -> bool:
-    return pwd_context.verify(plain, hashed)
+    return bcrypt.checkpw(plain.encode(), hashed.encode())
 
 
 def create_access_token(subject: str, extra: dict[str, Any] | None = None) -> str:
@@ -26,8 +24,14 @@ def create_access_token(subject: str, extra: dict[str, Any] | None = None) -> st
 
 
 def create_refresh_token(subject: str) -> str:
+    import secrets
     expire = datetime.now(UTC) + timedelta(days=settings.refresh_token_expire_days)
-    payload: dict[str, Any] = {"sub": subject, "exp": expire, "type": "refresh"}
+    payload: dict[str, Any] = {
+        "sub": subject,
+        "exp": expire,
+        "type": "refresh",
+        "jti": secrets.token_urlsafe(16),
+    }
     return jwt.encode(payload, settings.jwt_secret_key, algorithm=settings.jwt_algorithm)
 
 

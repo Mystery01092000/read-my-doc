@@ -96,12 +96,14 @@ class MessageRepository:
         role: str,
         content: str,
         citations: list[dict] | None = None,
+        token_usage: dict | None = None,
     ) -> Message:
         msg = Message(
             session_id=session_id,
             role=role,
             content=content,
             citations=citations or [],
+            token_usage=token_usage,
         )
         self._session.add(msg)
         await self._session.flush()

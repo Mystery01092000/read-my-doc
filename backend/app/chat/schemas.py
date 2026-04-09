@@ -12,11 +12,21 @@ class CitationSchema(BaseModel):
     snippet: str
 
 
+class TokenUsageSchema(BaseModel):
+    prompt_tokens: int = 0
+    completion_tokens: int = 0
+    llm_tokens: int = 0
+    embedding_tokens: int = 0
+    rerank_tokens: int = 0
+    total_tokens: int = 0
+
+
 class MessageResponse(BaseModel):
     id: uuid.UUID
     role: str
     content: str
     citations: list[CitationSchema]
+    token_usage: TokenUsageSchema | None = None
     created_at: datetime
 
     model_config = {"from_attributes": True}

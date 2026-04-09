@@ -2,14 +2,16 @@
 
 export interface User {
   id: string;
+  name: string;
+  phone: string | null;
   email: string;
   createdAt: string;
 }
 
 export interface TokenPair {
-  access_token: string;
-  refresh_token: string;
-  token_type: string;
+  accessToken: string;
+  refreshToken: string;
+  tokenType: string;
 }
 
 // ── Documents ─────────────────────────────────────────────────────────────────
@@ -25,6 +27,7 @@ export interface Document {
   status: DocumentStatus;
   errorMessage: string | null;
   pageCount: number | null;
+  tokensEmbedded: number | null;
   createdAt: string;
 }
 
@@ -38,11 +41,21 @@ export interface Citation {
   snippet: string;
 }
 
+export interface TokenUsage {
+  promptTokens: number;
+  completionTokens: number;
+  llmTokens: number;
+  embeddingTokens: number;
+  rerankTokens: number;
+  totalTokens: number;
+}
+
 export interface Message {
   id: string;
   role: "user" | "assistant";
   content: string;
   citations: Citation[];
+  tokenUsage: TokenUsage | null;
   createdAt: string;
 }
 

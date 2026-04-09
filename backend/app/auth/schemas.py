@@ -5,6 +5,8 @@ from pydantic import BaseModel, EmailStr, Field
 
 
 class RegisterRequest(BaseModel):
+    name: str = Field(min_length=1, max_length=200)
+    phone: str | None = Field(None, max_length=20)
     email: EmailStr
     password: str = Field(min_length=8, max_length=128)
 
@@ -26,6 +28,8 @@ class RefreshRequest(BaseModel):
 
 class UserResponse(BaseModel):
     id: uuid.UUID
+    name: str
+    phone: str | None
     email: str
     created_at: datetime
 

@@ -1,0 +1,108 @@
+- generic [ref=e3]:
+  - complementary [ref=e4]:
+    - generic [ref=e5]:
+      - link "Neural Link ReadMyDoc" [ref=e7] [cursor=pointer]:
+        - /url: /documents
+        - generic [ref=e8]: Neural Link
+        - heading "ReadMyDoc" [level=1] [ref=e9]
+      - button "Initialize Chat" [ref=e11] [cursor=pointer]:
+        - generic [ref=e13]:
+          - img [ref=e14]
+          - text: Initialize Chat
+    - generic [ref=e16]:
+      - img [ref=e17]
+      - textbox "Locate session..." [ref=e20]
+    - generic [ref=e21]:
+      - generic [ref=e22]: Active Streams
+      - link "New Chat" [ref=e180] [cursor=pointer]:
+        - /url: /chat/118c37c8-e220-41b1-b70b-b973e298622c
+        - generic [ref=e182]:
+          - img [ref=e183]
+          - generic [ref=e185]: New Chat
+        - img [ref=e186]
+      - link "Who is considered the father of artificial intelligence and what did he propose …" [ref=e119] [cursor=pointer]:
+        - /url: /chat/30c24bf5-b4d6-43bf-8189-bcbc8b5d4e53
+        - generic [ref=e120]:
+          - img [ref=e121]
+          - generic [ref=e123]: Who is considered the father of artificial intelligence and what did he propose …
+        - img [ref=e124]
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - generic [ref=e31]:
+          - img [ref=e32]
+          - generic [ref=e35]: System Atlas
+        - button [ref=e36] [cursor=pointer]:
+          - img [ref=e37]
+      - generic [ref=e41]:
+        - generic [ref=e42]: Uptime
+        - generic [ref=e43]: STABLE
+  - main [ref=e46]:
+    - generic [ref=e188]:
+      - complementary [ref=e189]:
+        - generic [ref=e190]:
+          - link "Repository Atlas" [ref=e191] [cursor=pointer]:
+            - /url: /documents
+            - img [ref=e192]
+            - generic [ref=e194]: Repository Atlas
+          - generic [ref=e195]:
+            - generic [ref=e196]:
+              - img [ref=e197]
+              - generic [ref=e200]: Neural Session
+            - heading "Active Intelligence" [level=2] [ref=e201]
+            - paragraph [ref=e202]: "ID: 118c37c8"
+        - generic [ref=e203]:
+          - generic [ref=e204]:
+            - generic [ref=e205]:
+              - generic [ref=e206]:
+                - generic [ref=e207]: Total Compute
+                - img [ref=e208]
+              - generic [ref=e210]: "0"
+              - paragraph [ref=e211]: Intelligence Units (IU)
+            - generic [ref=e212]:
+              - generic [ref=e213]:
+                - generic [ref=e214]: System Status
+                - img [ref=e215]
+              - generic [ref=e218]: Link Optimized
+          - generic [ref=e219]:
+            - generic [ref=e220]:
+              - heading "Source Matrix" [level=3] [ref=e221]:
+                - img [ref=e222]
+                - text: Source Matrix
+              - generic [ref=e226]: Ready
+            - generic [ref=e227]:
+              - generic [ref=e228]:
+                - generic [ref=e229]:
+                  - img [ref=e230]
+                  - generic [ref=e234]: Context_Global.pdf
+                - img [ref=e235]
+              - paragraph [ref=e237]: Awaiting additional knowledge shards...
+        - generic [ref=e241]: Neural Uplink Stable
+      - main [ref=e242]:
+        - generic [ref=e243]:
+          - generic [ref=e244]:
+            - img [ref=e245]
+            - heading "Neural Exchange" [level=1] [ref=e247]
+          - generic [ref=e248]:
+            - generic [ref=e249]:
+              - img [ref=e250]
+              - generic [ref=e253]: Global Protocol
+            - button "Share Stream" [ref=e254] [cursor=pointer]
+        - generic [ref=e257]:
+          - img [ref=e260]
+          - generic [ref=e263]:
+            - heading "System Virtualized" [level=2] [ref=e264]
+            - paragraph [ref=e265]: Knowledge matrix loaded. Input query to begin neural extraction.
+        - generic [ref=e268]:
+          - generic [ref=e270]:
+            - textbox "Input neural query..." [ref=e271]
+            - button [disabled] [ref=e272]:
+              - img [ref=e273]
+          - generic [ref=e276]:
+            - generic [ref=e277]:
+              - generic [ref=e278]:
+                - img [ref=e279]
+                - text: Global Search
+              - generic [ref=e281]:
+                - img [ref=e282]
+                - text: Citations Enabled
+            - generic [ref=e284]: Press Enter to transmit

@@ -2,8 +2,8 @@ import { publicClient } from "./client";
 import type { TokenPair } from "@/types";
 
 export const authApi = {
-  register: async (email: string, password: string): Promise<TokenPair> => {
-    const { data } = await publicClient.post<TokenPair>("/auth/register", { email, password });
+  register: async (name: string, phone: string, email: string, password: string): Promise<TokenPair> => {
+    const { data } = await publicClient.post<TokenPair>("/auth/register", { name, phone: phone || null, email, password });
     return data;
   },
 

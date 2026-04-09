@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#2a2a2a",
+                        "outline-variant": "#424754",
+                        "surface-tint": "#adc6ff",
+                        "on-tertiary-fixed-variant": "#723600",
+                        "surface-container-highest": "#353535",
+                        "outline": "#8c909f",
+                        "on-surface": "#e2e2e2",
+                        "tertiary-container": "#df7412",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#ffb786",
+                        "on-secondary-container": "#9fb5e7",
+                        "primary-container": "#4d8eff",
+                        "inverse-primary": "#005ac2",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#502400",
+                        "inverse-surface": "#e2e2e2",
+                        "surface-bright": "#393939",
+                        "on-primary-container": "#00285d",
+                        "surface-container-low": "#1b1b1b",
+                        "on-primary": "#002e6a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary": "#182f59",
+                        "primary-fixed": "#d8e2ff",
+                        "primary": "#adc6ff",
+                        "on-background": "#e2e2e2",
+                        "secondary-container": "#304671",
+                        "error-container": "#93000a",
+                        "on-primary-fixed-variant": "#004395",
+                        "secondary": "#b1c6f9",
+                        "secondary-fixed-dim": "#b1c6f9",
+                        "background": "#131313",
+                        "surface-dim": "#131313",
+                        "on-tertiary-fixed": "#311400",
+                        "on-error": "#690005",
+                        "surface": "#131313",
+                        "on-primary-fixed": "#001a42",
+                        "tertiary": "#ffb786",
+                        "surface-container": "#1f1f1f",
+                        "on-surface-variant": "#c2c6d6",
+                        "on-secondary-fixed": "#001a42",
+                        "surface-variant": "#353535",
+                        "on-tertiary-container": "#461f00",
+                        "inverse-on-surface": "#303030",
+                        "primary-fixed-dim": "#adc6ff",
+                        "tertiary-fixed": "#ffdcc6",
+                        "on-secondary-fixed-variant": "#304671"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(27, 27, 27, 0.6);
+            backdrop-filter: blur(32px);
+            border: 1px solid rgba(66, 71, 84, 0.2);
+        }
+        .metallic-gradient {
+            background: linear-gradient(135deg, #adc6ff 0%, #4d8eff 100%);
+            box-shadow: 0 0 20px rgba(173, 198, 255, 0.3);
+        }
+        .bento-inner {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-[#000000] text-on-surface font-body min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<!-- Suppressed Shell: Linear/Transactional page logic applied -->
+<main class="flex-grow flex items-center justify-center p-6 md:p-12 relative overflow-hidden">
+<!-- Abstract Background Element -->
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-secondary/10 blur-[100px] rounded-full pointer-events-none"></div>
+<!-- Main Bento Container -->
+<div class="glass-panel w-full max-w-4xl rounded-xl p-8 md:p-12 grid grid-cols-1 md:grid-cols-12 gap-6 relative z-10">
+<!-- Branding & Title Section -->
+<div class="md:col-span-12 flex flex-col items-center mb-4">
+<h1 class="font-headline font-bold text-4xl md:text-5xl tracking-tighter text-[#adc6ff] mb-2">ReadMyDoc</h1>
+<p class="font-label text-on-surface-variant text-sm tracking-wide uppercase">Secure access to your document corpus. Meta: v2.4.1.</p>
+</div>
+<!-- Left Column: Illustration/Decorative -->
+<div class="hidden md:flex md:col-span-5 bento-inner bg-surface-container-low rounded-xl flex-col justify-between p-8 overflow-hidden relative">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary text-4xl mb-4" data-icon="lock_open">lock_open</span>
+<h2 class="font-headline text-2xl font-bold leading-tight mb-4 text-on-surface">Encrypted Document Intelligence.</h2>
+<p class="text-on-surface-variant text-sm leading-relaxed">Experience a vault-grade interface designed for architectural clarity and high-fidelity interaction.</p>
+</div>
+<div class="mt-8 relative h-32">
+<img alt="Abstract digital vault" class="absolute inset-0 w-full h-full object-cover rounded-lg opacity-40 mix-blend-screen" data-alt="Abstract 3D render of floating glass geometric shapes and blue data streams with soft cinematic lighting on black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtzkZAJr_3tabco4eCshDkB1QAc8sq1y94sBMHhKBb40ZmSSlieeEbRUFhF3Vv_kjyaHE9xvG15sV37puucGcPix0iItmRxE4_5eEgy50krcKA7veck1o6o5CC3FgzyN9bFoM4TmsgQ0B69P1Km1kt2_tBiMIzEtssIdsMpk5b8brGcx6EZhrIefHNiQQjmRBMcq4zyRpUdoHPk_cuildrzETZdZ2ap4g-BlgOxkEu5Xxc8347UfBXsUTDEaCfWwiV5X9Htii6ayU"/>
+</div>
+</div>
+<!-- Right Column: Login Form -->
+<div class="md:col-span-7 flex flex-col gap-6">
+<!-- Form Grid -->
+<div class="bento-inner bg-surface-container-low rounded-xl p-8 h-full">
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="font-label text-xs font-bold text-on-surface-variant uppercase tracking-widest ml-1">Email Identity</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/10 rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all placeholder:text-outline/40" placeholder="name@architecture.com" type="email"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center px-1">
+<label class="font-label text-xs font-bold text-on-surface-variant uppercase tracking-widest">Access Key</label>
+<a class="text-[10px] text-primary hover:text-white transition-colors font-bold uppercase tracking-tighter" href="#">Forgot Password?</a>
+</div>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/10 rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all placeholder:text-outline/40" placeholder="••••••••" type="password"/>
+</div>
+<button class="metallic-gradient w-full py-4 rounded-xl font-headline font-bold text-on-primary tracking-tight hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2" type="submit">
+                            Authenticate System
+                            <span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+</div>
+<!-- Footer Links integrated into grid -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bento-inner bg-surface-container-high/40 rounded-xl p-4 flex flex-col justify-center items-center group cursor-pointer hover:bg-surface-container-high transition-colors">
+<span class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">New Researcher?</span>
+<a class="text-primary font-bold text-sm group-hover:text-white transition-colors" href="#">Request Access</a>
+</div>
+<div class="bento-inner bg-surface-container-high/40 rounded-xl p-4 flex flex-col justify-center items-center group cursor-pointer hover:bg-surface-container-high transition-colors">
+<span class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">Architecture</span>
+<span class="text-on-surface font-bold text-sm">v2.4.1 Node</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Segment -->
+<footer class="w-full bottom-0 left-0 pb-8 flex flex-col md:flex-row justify-center items-center gap-6 w-full">
+<span class="font-['Manrope'] text-xs uppercase tracking-widest text-slate-500">© 2024 ReadMyDoc. Secured Architecture.</span>
+<div class="flex gap-6">
+<a class="font-['Manrope'] text-xs uppercase tracking-widest text-slate-500 hover:text-[#adc6ff] transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Manrope'] text-xs uppercase tracking-widest text-slate-500 hover:text-[#adc6ff] transition-colors" href="#">Terms of Service</a>
+<a class="font-['Manrope'] text-xs uppercase tracking-widest text-slate-500 hover:text-[#adc6ff] transition-colors" href="#">Security Protocol</a>
+</div>
+</footer>
+</body></html>

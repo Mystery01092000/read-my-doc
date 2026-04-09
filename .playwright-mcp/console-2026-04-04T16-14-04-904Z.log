@@ -1,0 +1,2 @@
+[     123ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3000/api/chat/sessions/8d199dce-5bf6-43e6-970d-e034b56e8c57:0
+[     125ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:3000/api/chat/sessions?page=1&limit=20:0

@@ -92,7 +92,13 @@ async def _process_document_async(document_id_str: str) -> None:
                     {"doc_id": document_id},
                 )
 
-                await repo.set_status(document_id, "ready", page_count=page_count)
+                total_tokens_embedded = sum(tc.token_count for tc in text_chunks)
+                await repo.set_status(
+                    document_id,
+                    "ready",
+                    page_count=page_count,
+                    tokens_embedded=total_tokens_embedded,
+                )
 
             except Exception as exc:
                 await repo.set_status(document_id, "failed", error_message=str(exc)[:500])

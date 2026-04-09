@@ -62,6 +62,7 @@ class Message(Base):
     role: Mapped[str] = mapped_column(String(10), nullable=False)  # user | assistant
     content: Mapped[str] = mapped_column(Text, nullable=False)
     citations: Mapped[list] = mapped_column(JSONB, nullable=False, default=list)
+    token_usage: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )

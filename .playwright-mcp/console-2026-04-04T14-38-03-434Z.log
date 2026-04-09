@@ -1,0 +1,22 @@
+[     261ms] [ERROR] TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at http://localhost:3000/assets/index-BrVBm7KN.js:222:14808
+    at Array.map (<anonymous>)
+    at Lk (http://localhost:3000/assets/index-BrVBm7KN.js:222:14549)
+    at ms (http://localhost:3000/assets/index-BrVBm7KN.js:38:17263)
+    at Es (http://localhost:3000/assets/index-BrVBm7KN.js:40:3158)
+    at lf (http://localhost:3000/assets/index-BrVBm7KN.js:40:45244)
+    at ef (http://localhost:3000/assets/index-BrVBm7KN.js:40:40094)
+    at yy (http://localhost:3000/assets/index-BrVBm7KN.js:40:40022)
+    at jo (http://localhost:3000/assets/index-BrVBm7KN.js:40:39875)
+    at Us (http://localhost:3000/assets/index-BrVBm7KN.js:40:36190) @ http://localhost:3000/assets/index-BrVBm7KN.js:39
+[     307ms] TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at http://localhost:3000/assets/index-BrVBm7KN.js:222:14808
+    at Array.map (<anonymous>)
+    at Lk (http://localhost:3000/assets/index-BrVBm7KN.js:222:14549)
+    at ms (http://localhost:3000/assets/index-BrVBm7KN.js:38:17263)
+    at Es (http://localhost:3000/assets/index-BrVBm7KN.js:40:3158)
+    at lf (http://localhost:3000/assets/index-BrVBm7KN.js:40:45244)
+    at ef (http://localhost:3000/assets/index-BrVBm7KN.js:40:40094)
+    at yy (http://localhost:3000/assets/index-BrVBm7KN.js:40:40022)
+    at jo (http://localhost:3000/assets/index-BrVBm7KN.js:40:39875)
+    at Us (http://localhost:3000/assets/index-BrVBm7KN.js:40:36190)

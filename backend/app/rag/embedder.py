@@ -7,6 +7,11 @@ from sentence_transformers import SentenceTransformer
 from app.config import settings
 
 
+def estimate_tokens(text: str) -> int:
+    """Approximate token count — 1 token ≈ 4 characters for English text."""
+    return max(1, len(text) // 4)
+
+
 @lru_cache(maxsize=1)
 def get_embedder() -> SentenceTransformer:
     """Load and cache the embedding model (called once on startup)."""

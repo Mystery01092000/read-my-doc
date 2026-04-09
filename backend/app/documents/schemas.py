@@ -25,6 +25,7 @@ class DocumentResponse(BaseModel):
     status: str
     error_message: str | None
     page_count: int | None
+    tokens_embedded: int | None = None
     created_at: datetime
 
     model_config = {"from_attributes": True}

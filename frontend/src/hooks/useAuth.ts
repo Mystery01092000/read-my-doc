@@ -14,7 +14,7 @@ export function useAuth() {
     setError(null);
     try {
       const tokens = await authApi.login(email, password);
-      setTokens(tokens.access_token, tokens.refresh_token);
+      setTokens(tokens.accessToken, tokens.refreshToken);
       navigate("/documents");
     } catch {
       setError("Invalid email or password");
@@ -23,12 +23,12 @@ export function useAuth() {
     }
   };
 
-  const register = async (email: string, password: string) => {
+  const register = async (name: string, phone: string, email: string, password: string) => {
     setIsLoading(true);
     setError(null);
     try {
-      const tokens = await authApi.register(email, password);
-      setTokens(tokens.access_token, tokens.refresh_token);
+      const tokens = await authApi.register(name, phone, email, password);
+      setTokens(tokens.accessToken, tokens.refreshToken);
       navigate("/documents");
     } catch {
       setError("Registration failed. Email may already be in use.");

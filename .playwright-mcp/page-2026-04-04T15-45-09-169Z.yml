@@ -1,0 +1,89 @@
+- generic [ref=e39]:
+  - complementary [ref=e40]:
+    - generic [ref=e41]:
+      - link "Neural Link ReadMyDoc" [ref=e43] [cursor=pointer]:
+        - /url: /documents
+        - generic [ref=e44]: Neural Link
+        - heading "ReadMyDoc" [level=1] [ref=e45]
+      - button "Initialize Chat" [ref=e47] [cursor=pointer]:
+        - generic [ref=e49]:
+          - img [ref=e50]
+          - text: Initialize Chat
+    - generic [ref=e52]:
+      - img [ref=e53]
+      - textbox "Locate session..." [ref=e56]
+    - generic [ref=e57]:
+      - generic [ref=e58]: Active Streams
+      - generic [ref=e59]:
+        - img [ref=e60]
+        - paragraph [ref=e64]: Matrix Empty
+    - generic [ref=e65]:
+      - generic [ref=e66]:
+        - generic [ref=e67]:
+          - img [ref=e68]
+          - generic [ref=e71]: System Atlas
+        - button [ref=e72] [cursor=pointer]:
+          - img [ref=e73]
+      - generic [ref=e77]:
+        - generic [ref=e78]: Uptime
+        - generic [ref=e79]: STABLE
+  - main [ref=e82]:
+    - generic [ref=e83]:
+      - generic [ref=e84]:
+        - generic [ref=e85]:
+          - generic [ref=e86]:
+            - img [ref=e87]
+            - generic [ref=e91]: Data Repository
+          - heading "Document Atlas" [level=1] [ref=e92]
+          - paragraph [ref=e93]: "System Version 2.8.4 | Matrix Status: Synchronized"
+        - generic [ref=e94]:
+          - link "Neural Session" [ref=e95] [cursor=pointer]:
+            - /url: /chat
+            - img [ref=e96]
+            - generic [ref=e97]: Neural Session
+          - generic [ref=e98]:
+            - img [ref=e99]
+            - generic [ref=e102]: Secure Uplink
+      - generic [ref=e103]:
+        - generic [ref=e104]:
+          - generic [ref=e105]:
+            - generic [ref=e106]:
+              - generic [ref=e107]:
+                - img [ref=e108]
+                - generic [ref=e113]: Intelligence Matrix
+              - heading "System Telemetry" [level=2] [ref=e114]
+            - img [ref=e116]
+          - generic [ref=e118]:
+            - generic [ref=e119]:
+              - text: Total Shards
+              - generic [ref=e120]: "1"
+            - generic [ref=e121]:
+              - text: Direct Access
+              - generic [ref=e122]: "1"
+            - generic [ref=e123]:
+              - text: Contextualizing
+              - generic [ref=e124]: "0"
+        - generic [active] [ref=e125] [cursor=pointer]:
+          - button "Choose File" [ref=e126]
+          - generic [ref=e127]:
+            - img [ref=e129]
+            - generic [ref=e132]:
+              - heading "Data Ingestion" [level=3] [ref=e133]
+              - paragraph [ref=e134]: Drop matrices here to initialize context streams.
+          - img [ref=e135]
+        - generic [ref=e139]:
+          - generic [ref=e140]:
+            - generic [ref=e141]:
+              - img [ref=e142]
+              - heading "Synchronized Shards" [level=3] [ref=e146]
+            - generic [ref=e149]: Live Feed
+          - generic [ref=e159] [cursor=pointer]:
+            - generic [ref=e160]:
+              - img [ref=e162]
+              - generic [ref=e165]: Neural Link Active
+            - generic [ref=e166]:
+              - heading "test-doc.txt TXT" [level=3] [ref=e167]:
+                - text: test-doc.txt
+                - generic [ref=e168]: TXT
+              - paragraph [ref=e169]: 259 Neural Intelligence Units initialized.
+            - generic [ref=e171]: Purge Shard →

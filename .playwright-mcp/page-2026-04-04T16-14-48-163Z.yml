@@ -1,0 +1,33 @@
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - heading "ReadMyDoc" [level=1] [ref=e6]
+      - paragraph [ref=e7]: "Secure access to your document corpus. Meta: v2.4.1."
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - img [ref=e10]
+        - heading "Encrypted Document Intelligence." [level=2] [ref=e13]
+        - paragraph [ref=e14]: Experience a vault-grade interface designed for architectural clarity and high-fidelity interaction.
+      - img "Abstract digital vault" [ref=e16]
+    - generic [ref=e17]:
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - text: Email
+          - textbox "name@architecture.com" [ref=e21]
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - generic [ref=e24]: Password
+            - link "Forgot Password?" [ref=e25] [cursor=pointer]:
+              - /url: /login
+          - textbox "••••••••" [ref=e26]
+        - button "Authenticate System" [ref=e27] [cursor=pointer]:
+          - text: Authenticate System
+          - img [ref=e28]
+      - generic [ref=e30]:
+        - link "New Researcher? Request Access" [ref=e31] [cursor=pointer]:
+          - /url: /register
+          - generic [ref=e32]: New Researcher?
+          - generic [ref=e33]: Request Access
+        - generic [ref=e34]:
+          - generic [ref=e35]: Architecture
+          - generic [ref=e36]: v2.4.1 Node

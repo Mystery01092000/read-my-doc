@@ -26,7 +26,7 @@ class AuthService:
             raise ConflictError("Email already registered")
 
         password_hash = hash_password(req.password)
-        user = await self._users.create(req.email, password_hash)
+        user = await self._users.create(req.email, password_hash, req.name, req.phone)
 
         return await self._issue_tokens(str(user.id))
 

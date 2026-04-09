@@ -4,24 +4,30 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 0 0% 0%;
     --foreground: 210 40% 98%;
   }
 
   * {
-    @apply border-gray-200;
+    @apply border-outline-variant/10;
   }
 
   body {
-    @apply bg-white text-gray-900 antialiased;
+    @apply bg-black text-[#e2e2e2] antialiased font-body;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-[#1b1b1b]/60 backdrop-blur-32 border border-outline-variant/20;
   }
 
-  .dark body {
-    @apply bg-gray-950 text-gray-50;
+  .metallic-gradient {
+    background: linear-gradient(135deg, #adc6ff 0%, #4d8eff 100%);
+    box-shadow: 0 0 20px rgba(173, 198, 255, 0.3);
+  }
+
+  .bento-inner {
+    @apply bg-surface-container-low border border-white/5 rounded-xl;
   }
 }

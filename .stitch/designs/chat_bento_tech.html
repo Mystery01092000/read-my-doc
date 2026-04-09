@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ReadMyDoc | Bento Tech Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#004395",
+                        "on-secondary-fixed": "#002113",
+                        "on-secondary-fixed-variant": "#005236",
+                        "primary-fixed": "#d8e2ff",
+                        "secondary-fixed": "#6ffbbe",
+                        "inverse-on-surface": "#303030",
+                        "on-secondary": "#003824",
+                        "on-surface-variant": "#c2c6d6",
+                        "on-primary-fixed": "#001a42",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "surface-container": "#1f1f1f",
+                        "on-secondary-container": "#00311f",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "surface-container-high": "#2a2a2a",
+                        "on-background": "#e2e2e2",
+                        "tertiary-container": "#ca8100",
+                        "surface-tint": "#adc6ff",
+                        "on-primary": "#002e6a",
+                        "surface-dim": "#131313",
+                        "surface-container-low": "#1b1b1b",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "primary-fixed-dim": "#adc6ff",
+                        "inverse-primary": "#005ac2",
+                        "on-primary-container": "#00285d",
+                        "tertiary-fixed": "#ffddb8",
+                        "primary": "#adc6ff",
+                        "outline-variant": "#424754",
+                        "surface-container-highest": "#353535",
+                        "inverse-surface": "#e2e2e2",
+                        "background": "#000000",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#00a572",
+                        "on-tertiary": "#472a00",
+                        "surface-bright": "#393939",
+                        "primary-container": "#4d8eff",
+                        "on-surface": "#e2e2e2",
+                        "surface-variant": "#353535",
+                        "outline": "#8c909f",
+                        "surface": "#131313",
+                        "on-tertiary-container": "#3e2400",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffb95f",
+                        "secondary": "#4edea3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #000000; color: #E2E2E2; }
+        h1, h2, h3, .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-panel { background: rgba(19, 19, 19, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .neon-border-primary { border: 1px solid rgba(173, 198, 255, 0.2); transition: all 0.3s ease; }
+        .neon-border-primary:focus-within { border-color: #adc6ff; box-shadow: 0 0 15px rgba(173, 198, 255, 0.15); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #353535; border-radius: 10px; }
+        .bento-card { transition: transform 0.2s ease, background-color 0.2s ease; }
+        .bento-card:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary/30 min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-3 bg-black/80 backdrop-blur-md">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-[#adc6ff] font-headline">ReadMyDoc</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#adc6ff] border-b-2 border-[#adc6ff] pb-1 text-xs font-bold tracking-widest uppercase" href="#">Sessions</a>
+<a class="text-[#E2E2E2] opacity-60 hover:opacity-100 hover:text-[#adc6ff] transition-all text-xs font-bold tracking-widest uppercase" href="#">Knowledge</a>
+<a class="text-[#E2E2E2] opacity-60 hover:opacity-100 hover:text-[#adc6ff] transition-all text-xs font-bold tracking-widest uppercase" href="#">Metrics</a>
+<a class="text-[#E2E2E2] opacity-60 hover:opacity-100 hover:text-[#adc6ff] transition-all text-xs font-bold tracking-widest uppercase" href="#">History</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">settings</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">account_circle</button>
+</div>
+</header>
+<!-- Side Navigation (Mobile Hidden) -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-4 z-40 bg-[#131313] w-64 rounded-r-xl pt-20 hidden lg:flex">
+<div class="flex items-center gap-3 px-4 mb-8">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">terminal</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface font-headline">Technical Lead</p>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label">Premium Tier</p>
+</div>
+</div>
+<div class="space-y-2 flex-1">
+<button class="w-full flex items-center gap-3 px-4 py-3 text-[#adc6ff] font-bold bg-[#2A2A2A] rounded-xl group">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-sm">Sessions</span>
+</button>
+<button class="w-full flex items-center gap-3 px-4 py-3 text-[#E2E2E2] opacity-50 hover:bg-[#1B1B1B] hover:scale-[1.02] hover:opacity-100 transition-all rounded-xl group">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="text-sm">Knowledge</span>
+</button>
+<button class="w-full flex items-center gap-3 px-4 py-3 text-[#E2E2E2] opacity-50 hover:bg-[#1B1B1B] hover:scale-[1.02] hover:opacity-100 transition-all rounded-xl group">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="text-sm">Metrics</span>
+</button>
+<button class="w-full flex items-center gap-3 px-4 py-3 text-[#E2E2E2] opacity-50 hover:bg-[#1B1B1B] hover:scale-[1.02] hover:opacity-100 transition-all rounded-xl group">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm">Settings</span>
+</button>
+</div>
+<button class="mt-auto flex items-center gap-3 px-4 py-3 text-[#E2E2E2] opacity-50 hover:text-error transition-all">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-sm font-label uppercase tracking-widest">Logout</span>
+</button>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 pt-20 lg:ml-64 p-4 lg:p-6 overflow-hidden">
+<div class="h-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-4 max-w-[1600px] mx-auto">
+<!-- Left Sidebar Tile: Session History -->
+<div class="md:col-span-1 lg:col-span-3 flex flex-col gap-4 overflow-hidden">
+<section class="flex-1 bg-surface-container-low rounded-xl border border-white/10 p-4 flex flex-col bento-card">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">history</span>
+<h2 class="text-sm font-bold font-headline uppercase tracking-wider">Session History</h2>
+</div>
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded-full">UPDATED</span>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar space-y-2">
+<!-- History Items -->
+<div class="p-3 bg-surface-container-high rounded-xl border border-primary/20 cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-label text-primary font-bold uppercase tracking-tighter">Current</span>
+<span class="text-[10px] text-on-surface-variant">2m ago</span>
+</div>
+<p class="text-xs font-medium text-on-surface truncate">Technical Specs Rev 4.2 Analysis</p>
+</div>
+<div class="p-3 hover:bg-surface-container-highest rounded-xl transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-label text-on-surface-variant uppercase tracking-tighter">Archive</span>
+<span class="text-[10px] text-on-surface-variant">1h ago</span>
+</div>
+<p class="text-xs font-medium text-on-surface-variant group-hover:text-on-surface truncate">API Integration Roadmap</p>
+</div>
+<div class="p-3 hover:bg-surface-container-highest rounded-xl transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-label text-on-surface-variant uppercase tracking-tighter">Archive</span>
+<span class="text-[10px] text-on-surface-variant">Yesterday</span>
+</div>
+<p class="text-xs font-medium text-on-surface-variant group-hover:text-on-surface truncate">Onboarding UX Review</p>
+</div>
+<div class="p-3 hover:bg-surface-container-highest rounded-xl transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-label text-on-surface-variant uppercase tracking-tighter">Archive</span>
+<span class="text-[10px] text-on-surface-variant">2 days ago</span>
+</div>
+<p class="text-xs font-medium text-on-surface-variant group-hover:text-on-surface truncate">Vector Database Optimization</p>
+</div>
+</div>
+<button class="mt-4 w-full py-2.5 bg-primary text-on-primary font-bold rounded-xl text-xs uppercase tracking-widest hover:brightness-110 transition-all">New Analysis</button>
+</section>
+<div class="bg-surface-container-low rounded-xl border border-white/10 p-4 bento-card">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<h2 class="text-xs font-bold font-headline uppercase tracking-wider">Active Context</h2>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between text-[11px]">
+<span class="text-on-surface-variant">Architecture_v2.pdf</span>
+<span class="text-secondary">Ready</span>
+</div>
+<div class="flex items-center justify-between text-[11px]">
+<span class="text-on-surface-variant">Schema_Design.json</span>
+<span class="text-secondary">Ready</span>
+</div>
+<div class="flex items-center justify-between text-[11px]">
+<span class="text-on-surface-variant">User_Flows.doc</span>
+<span class="text-secondary">Ready</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Central Panel: Immersive Chat Feed -->
+<div class="md:col-span-2 lg:col-span-6 flex flex-col relative overflow-hidden bg-surface-container-lowest rounded-xl border border-white/10">
+<!-- Chat Content -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-6 pb-24">
+<!-- AI Message -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="flex items-center gap-2 mb-2 ml-1">
+<div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px] text-on-primary">bolt</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">ReadMyDoc Engine</span>
+</div>
+<div class="bg-surface-container-high p-4 rounded-xl rounded-tl-none border border-primary/20 shadow-xl shadow-primary/5">
+<p class="text-sm leading-relaxed">I've analyzed the <span class="text-primary font-mono">Architecture_v2.pdf</span>. The microservices communication layer uses gRPC by default. Would you like me to explain the message retry logic or the authentication middleware?</p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex flex-col items-end max-w-[85%] ml-auto">
+<div class="flex items-center gap-2 mb-2 mr-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-secondary">Technical Lead</span>
+<div class="w-5 h-5 rounded-full bg-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px] text-on-secondary">person</span>
+</div>
+</div>
+<div class="bg-surface-container p-4 rounded-xl rounded-tr-none border border-secondary/20 shadow-xl shadow-secondary/5">
+<p class="text-sm leading-relaxed text-on-surface">Explain the retry logic. Does it use exponential backoff?</p>
+</div>
+</div>
+<!-- AI Message -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="flex items-center gap-2 mb-2 ml-1">
+<div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px] text-on-primary">bolt</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">ReadMyDoc Engine</span>
+</div>
+<div class="bg-surface-container-high p-4 rounded-xl rounded-tl-none border border-primary/20 shadow-xl shadow-primary/5">
+<p class="text-sm leading-relaxed mb-3">Yes, section 4.2 specifically mentions a <span class="text-secondary">jittered exponential backoff</span> strategy. Here is the implementation summary:</p>
+<div class="bg-black/40 rounded-lg p-3 font-mono text-xs text-on-surface-variant border border-white/5">
+                                Base delay: 100ms<br/>
+                                Max retries: 5<br/>
+                                Multiplier: 2.0
+                            </div>
+</div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black via-black/80 to-transparent">
+<div class="relative group">
+<input class="w-full bg-surface-container-high border border-white/10 rounded-xl py-4 pl-5 pr-14 text-sm focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary transition-all placeholder:text-on-surface-variant/40" placeholder="Query the documentation engine..." type="text"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-primary text-on-primary rounded-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Sidebar Tiles -->
+<div class="md:col-span-1 lg:col-span-3 flex flex-col gap-4 overflow-hidden">
+<!-- Source Citations -->
+<section class="flex-1 bg-surface-container-low rounded-xl border border-white/10 p-4 flex flex-col bento-card">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<h2 class="text-xs font-bold font-headline uppercase tracking-wider">Source Citations</h2>
+</div>
+<div class="space-y-3 overflow-y-auto custom-scrollbar pr-1">
+<div class="p-3 bg-surface-container-lowest rounded-lg border-l-2 border-primary">
+<div class="flex justify-between items-center mb-1">
+<span class="text-[10px] font-bold text-on-surface uppercase">Architecture_v2</span>
+<span class="text-[10px] text-on-surface-variant">Pg. 42</span>
+</div>
+<p class="text-[11px] text-on-surface-variant leading-relaxed line-clamp-2 italic">"...exponential backoff with a base interval of 100ms is mandatory for all gRPC inter-service calls..."</p>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[9px] text-primary/80 font-bold tracking-widest uppercase">Confidence: 98%</span>
+<span class="material-symbols-outlined text-xs text-on-surface-variant">open_in_new</span>
+</div>
+</div>
+<div class="p-3 bg-surface-container-lowest rounded-lg border-l-2 border-secondary">
+<div class="flex justify-between items-center mb-1">
+<span class="text-[10px] font-bold text-on-surface uppercase">Schema_Design</span>
+<span class="text-[10px] text-on-surface-variant">Line 128</span>
+</div>
+<p class="text-[11px] text-on-surface-variant leading-relaxed line-clamp-2 italic">"...retry_policy: { type: 'exponential', max_attempts: 5, initial_interval: 0.1 }..."</p>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[9px] text-secondary/80 font-bold tracking-widest uppercase">Confidence: 94%</span>
+<span class="material-symbols-outlined text-xs text-on-surface-variant">open_in_new</span>
+</div>
+</div>
+<div class="p-3 bg-surface-container-lowest rounded-lg border-l-2 border-tertiary">
+<div class="flex justify-between items-center mb-1">
+<span class="text-[10px] font-bold text-on-surface uppercase">Global_Standard</span>
+<span class="text-[10px] text-on-surface-variant">Sec. 1.2</span>
+</div>
+<p class="text-[11px] text-on-surface-variant leading-relaxed line-clamp-2 italic">"...network resilience protocols must adhere to the high-availability spec defined in..."</p>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[9px] text-tertiary/80 font-bold tracking-widest uppercase">Confidence: 87%</span>
+<span class="material-symbols-outlined text-xs text-on-surface-variant">open_in_new</span>
+</div>
+</div>
+</div>
+</section>
+<!-- System Metrics -->
+<section class="bg-surface-container-low rounded-xl border border-white/10 p-4 bento-card">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">trending_up</span>
+<h2 class="text-xs font-bold font-headline uppercase tracking-wider">System Metrics</h2>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="p-3 bg-surface-container-highest rounded-xl">
+<p class="text-[9px] uppercase tracking-widest text-on-surface-variant mb-1">AI Latency</p>
+<div class="flex items-baseline gap-1">
+<span class="text-xl font-bold text-primary font-headline">42</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">ms</span>
+</div>
+</div>
+<div class="p-3 bg-surface-container-highest rounded-xl">
+<p class="text-[9px] uppercase tracking-widest text-on-surface-variant mb-1">Vector Flow</p>
+<div class="flex items-baseline gap-1">
+<span class="text-xl font-bold text-secondary font-headline">1.2</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">M/s</span>
+</div>
+</div>
+</div>
+<div class="mt-4 h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4 rounded-full"></div>
+</div>
+<p class="mt-2 text-[9px] text-on-surface-variant text-center uppercase tracking-widest">Resource Load: 74%</p>
+</section>
+</div>
+</div>
+</main>
+<!-- Visual Polish: Decorative Background Element -->
+<div class="fixed top-0 right-0 -z-10 w-1/2 h-1/2 bg-primary/5 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+<div class="fixed bottom-0 left-0 -z-10 w-1/3 h-1/3 bg-secondary/5 blur-[100px] rounded-full -translate-x-1/4 translate-y-1/4 pointer-events-none"></div>
+</body></html>

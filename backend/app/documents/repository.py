@@ -59,12 +59,15 @@ class DocumentRepository:
         status: str,
         error_message: str | None = None,
         page_count: int | None = None,
+        tokens_embedded: int | None = None,
     ) -> None:
         values: dict = {"status": status}
         if error_message is not None:
             values["error_message"] = error_message
         if page_count is not None:
             values["page_count"] = page_count
+        if tokens_embedded is not None:
+            values["tokens_embedded"] = tokens_embedded
         await self._session.execute(
             update(Document).where(Document.id == document_id).values(**values)
         )

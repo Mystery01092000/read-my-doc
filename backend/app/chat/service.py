@@ -15,7 +15,8 @@ from app.chat.schemas import (
 )
 from app.common.exceptions import NotFoundError, UnprocessableError
 from app.config import settings
-from app.rag.generator import GeneratedAnswer, generate_answer, generate_answer_stream
+from app.rag.embedder import embed_query, estimate_tokens
+from app.rag.generator import generate_answer_stream
 from app.rag.reranker import rerank
 from app.rag.retriever import retrieve
 
@@ -98,49 +99,64 @@ class ChatService:
 
         doc_ids = await self._sessions.get_document_ids(session_id)
 
-        # Save user message
-        await self._messages.create(session_id, "user", content)
+        # Save user message (token count estimated)
+        user_token_count = estimate_tokens(content)
+        await self._messages.create(
+            session_id,
+            "user",
+            content,
+            token_usage={"total_tokens": user_token_count, "prompt_tokens": user_token_count},
+        )
 
-        # RAG pipeline
+        # RAG pipeline — track query embedding tokens
+        query_embedding_tokens = estimate_tokens(content)
         candidates = await retrieve(
             self._db, content, doc_ids, top_k=settings.retrieval_top_k
         )
         ranked_chunks = rerank(content, candidates, top_n=settings.rerank_top_n)
 
-        # Stream answer
         full_answer = ""
-        final_citations: list[dict] = []
+        final_meta: dict = {}
 
         async def _stream() -> AsyncIterator[str]:
-            nonlocal full_answer, final_citations
-            async for token in generate_answer_stream(content, ranked_chunks):
-                if token.startswith("\n\n[CITATIONS]"):
-                    citation_json = token[len("\n\n[CITATIONS]"):]
+            nonlocal full_answer, final_meta
+
+            async for token in generate_answer_stream(
+                content, ranked_chunks, query_embedding_tokens=query_embedding_tokens
+            ):
+                if token.startswith("\n\n[META]"):
+                    meta_json = token[len("\n\n[META]"):]
                     try:
-                        final_citations = json.loads(citation_json)
+                        final_meta.update(json.loads(meta_json))
                     except json.JSONDecodeError:
-                        final_citations = []
-                    # Don't yield the citations marker — handled after stream ends
+                        pass
                     break
                 full_answer += token
                 yield f"data: {json.dumps({'type': 'token', 'content': token})}\n\n"
 
-            # Enrich citations with chunk metadata
-            enriched_citations = _enrich_citations(final_citations, ranked_chunks)
+            raw_citations: list[dict] = final_meta.get("citations", [])
+            token_usage: dict = final_meta.get("token_usage", {})
 
-            # Persist assistant message
+            enriched_citations = _enrich_citations(raw_citations, ranked_chunks)
+
+            # Persist assistant message with full token usage breakdown
             await self._messages.create(
-                session_id, "assistant", full_answer, citations=enriched_citations
+                session_id,
+                "assistant",
+                full_answer,
+                citations=enriched_citations,
+                token_usage=token_usage,
             )
             await self._sessions.touch(session_id)
 
-            # Auto-title if first assistant message
+            # Auto-title on first assistant message
             if cs.title == "New Chat":
                 short_title = content[:80] + ("…" if len(content) > 80 else "")
                 await self._sessions.update_title(session_id, short_title)
 
-            # Send final citations event
+            # Send citations + token usage as separate SSE events
             yield f"data: {json.dumps({'type': 'citations', 'citations': enriched_citations})}\n\n"
+            yield f"data: {json.dumps({'type': 'token_usage', 'token_usage': token_usage})}\n\n"
             yield "data: [DONE]\n\n"
 
         return _stream()

@@ -1,0 +1,104 @@
+- generic [ref=e37]:
+  - complementary [ref=e38]:
+    - generic [ref=e39]:
+      - link "Neural Link ReadMyDoc" [ref=e41] [cursor=pointer]:
+        - /url: /documents
+        - generic [ref=e42]: Neural Link
+        - heading "ReadMyDoc" [level=1] [ref=e43]
+      - button "Initialize Chat" [ref=e45] [cursor=pointer]:
+        - generic [ref=e47]:
+          - img [ref=e48]
+          - text: Initialize Chat
+    - generic [ref=e50]:
+      - img [ref=e51]
+      - textbox "Locate session..." [ref=e54]
+    - generic [ref=e55]:
+      - generic [ref=e56]: Active Streams
+      - link "What is deep learning?" [ref=e57] [cursor=pointer]:
+        - /url: /chat/8d199dce-5bf6-43e6-970d-e034b56e8c57
+        - generic [ref=e58]:
+          - img [ref=e59]
+          - generic [ref=e61]: What is deep learning?
+        - img [ref=e62]
+      - link "Who is considered the father of artificial intelligence and what did he propose …" [ref=e64] [cursor=pointer]:
+        - /url: /chat/118c37c8-e220-41b1-b70b-b973e298622c
+        - generic [ref=e65]:
+          - img [ref=e66]
+          - generic [ref=e68]: Who is considered the father of artificial intelligence and what did he propose …
+        - img [ref=e69]
+      - link "Who is considered the father of artificial intelligence and what did he propose …" [ref=e71] [cursor=pointer]:
+        - /url: /chat/30c24bf5-b4d6-43bf-8189-bcbc8b5d4e53
+        - generic [ref=e72]:
+          - img [ref=e73]
+          - generic [ref=e75]: Who is considered the father of artificial intelligence and what did he propose …
+        - img [ref=e76]
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - generic [ref=e80]:
+          - img [ref=e81]
+          - generic [ref=e84]: System Atlas
+        - button [ref=e85] [cursor=pointer]:
+          - img [ref=e86]
+      - generic [ref=e90]:
+        - generic [ref=e91]: Uptime
+        - generic [ref=e92]: STABLE
+  - main [ref=e95]:
+    - generic [ref=e96]:
+      - generic [ref=e97]:
+        - generic [ref=e98]:
+          - generic [ref=e99]:
+            - img [ref=e100]
+            - generic [ref=e104]: Data Repository
+          - heading "Document Atlas" [level=1] [ref=e105]
+          - paragraph [ref=e106]: "System Version 2.8.4 | Matrix Status: Synchronized"
+        - generic [ref=e107]:
+          - link "Neural Session" [ref=e108] [cursor=pointer]:
+            - /url: /chat
+            - img [ref=e109]
+            - generic [ref=e110]: Neural Session
+          - generic [ref=e111]:
+            - img [ref=e112]
+            - generic [ref=e115]: Secure Uplink
+      - generic [ref=e116]:
+        - generic [ref=e117]:
+          - generic [ref=e118]:
+            - generic [ref=e119]:
+              - generic [ref=e120]:
+                - img [ref=e121]
+                - generic [ref=e126]: Intelligence Matrix
+              - heading "System Telemetry" [level=2] [ref=e127]
+            - img [ref=e129]
+          - generic [ref=e131]:
+            - generic [ref=e132]:
+              - text: Total Shards
+              - generic [ref=e133]: "1"
+            - generic [ref=e134]:
+              - text: Direct Access
+              - generic [ref=e135]: "1"
+            - generic [ref=e136]:
+              - text: Contextualizing
+              - generic [ref=e137]: "0"
+        - generic [ref=e138] [cursor=pointer]:
+          - button "Choose File" [ref=e139]
+          - generic [ref=e140]:
+            - img [ref=e142]
+            - generic [ref=e145]:
+              - heading "Data Ingestion" [level=3] [ref=e146]
+              - paragraph [ref=e147]: Drop matrices here to initialize context streams.
+          - img [ref=e148]
+        - generic [ref=e152]:
+          - generic [ref=e153]:
+            - generic [ref=e154]:
+              - img [ref=e155]
+              - heading "Synchronized Shards" [level=3] [ref=e159]
+            - generic [ref=e162]: Live Feed
+          - generic [ref=e167] [cursor=pointer]:
+            - generic [ref=e168]:
+              - img [ref=e170]
+              - generic [ref=e173]: Neural Link Active
+            - generic [ref=e174]:
+              - heading "test-doc.txt TXT" [level=3] [ref=e175]:
+                - text: test-doc.txt
+                - generic [ref=e176]: TXT
+              - paragraph [ref=e177]: 259 Neural Intelligence Units initialized.
+            - generic [ref=e179]: Purge Shard →

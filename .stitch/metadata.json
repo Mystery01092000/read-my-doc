@@ -1,0 +1,31 @@
+{
+  "name": "projects/1662011287072651922",
+  "projectId": "1662011287072651922",
+  "title": "Read My Doc",
+  "screens": {
+    "login": {
+      "id": "00b9ac66da664c849f29165e78d63b29",
+      "sourceScreen": "projects/1662011287072651922/screens/00b9ac66da664c849f29165e78d63b29",
+      "x": 0,
+      "y": 0,
+      "width": 2560,
+      "height": 2048
+    },
+    "documents": {
+      "id": "56ca71d38a034710a2e0d7e05e56d4e0",
+      "sourceScreen": "projects/1662011287072651922/screens/56ca71d38a034710a2e0d7e05e56d4e0",
+      "x": 2600,
+      "y": 0,
+      "width": 2560,
+      "height": 2462
+    },
+    "chat": {
+      "id": "3a3b9905152b44bc8b7d9eb6d8812c1c",
+      "sourceScreen": "projects/1662011287072651922/screens/3a3b9905152b44bc8b7d9eb6d8812c1c",
+      "x": 5200,
+      "y": 0,
+      "width": 3200,
+      "height": 2218
+    }
+  }
+}
