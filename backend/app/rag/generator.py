@@ -207,6 +207,8 @@ async def _call_llm(user_prompt: str) -> tuple[str, int, int]:
     """Returns (response_text, prompt_tokens, completion_tokens)."""
     if settings.llm_provider == "openai":
         return await _call_openai(user_prompt)
+    if settings.llm_provider == "groq":
+        return await _call_groq(user_prompt)
     return await _call_ollama(user_prompt)
 
 
@@ -214,6 +216,9 @@ async def _stream_llm(user_prompt: str) -> AsyncIterator[str | tuple[int, int]]:
     """Yields str tokens then a final (prompt_tokens, completion_tokens) tuple."""
     if settings.llm_provider == "openai":
         async for item in _stream_openai(user_prompt):
+            yield item
+    elif settings.llm_provider == "groq":
+        async for item in _stream_groq(user_prompt):
             yield item
     else:
         async for item in _stream_ollama(user_prompt):
@@ -337,6 +342,71 @@ async def _stream_openai(user_prompt: str) -> AsyncIterator[str | tuple[int, int
                 except (json.JSONDecodeError, KeyError):
                     continue
     # Fallback to estimates if stream_options not available
+    yield (
+        prompt_tokens or estimate_tokens(SYSTEM_PROMPT + user_prompt),
+        completion_tokens or estimate_tokens(total_content),
+    )
+
+
+# ── Groq (OpenAI-compatible) ──────────────────────────────────────────────────
+
+async def _call_groq(user_prompt: str) -> tuple[str, int, int]:
+    async with httpx.AsyncClient(timeout=60.0) as client:
+        response = await client.post(
+            f"{settings.groq_base_url}/chat/completions",
+            headers={"Authorization": f"Bearer {settings.groq_api_key}"},
+            json={
+                "model": settings.groq_model,
+                "messages": [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": user_prompt},
+                ],
+                "response_format": {"type": "json_object"},
+            },
+        )
+        response.raise_for_status()
+        data = response.json()
+        text = data["choices"][0]["message"]["content"]
+        usage = data.get("usage", {})
+        return text, usage.get("prompt_tokens", 0), usage.get("completion_tokens", 0)
+
+
+async def _stream_groq(user_prompt: str) -> AsyncIterator[str | tuple[int, int]]:
+    total_content = ""
+    prompt_tokens = 0
+    completion_tokens = 0
+    async with httpx.AsyncClient(timeout=60.0) as client:
+        async with client.stream(
+            "POST",
+            f"{settings.groq_base_url}/chat/completions",
+            headers={"Authorization": f"Bearer {settings.groq_api_key}"},
+            json={
+                "model": settings.groq_model,
+                "messages": [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": user_prompt},
+                ],
+                "stream": True,
+                "stream_options": {"include_usage": True},
+            },
+        ) as response:
+            response.raise_for_status()
+            async for line in response.aiter_lines():
+                if not line.startswith("data: "):
+                    continue
+                data_str = line[6:]
+                if data_str == "[DONE]":
+                    break
+                try:
+                    data = json.loads(data_str)
+                    if token := data["choices"][0]["delta"].get("content", ""):
+                        total_content += token
+                        yield token
+                    if usage := data.get("usage"):
+                        prompt_tokens = usage.get("prompt_tokens", 0)
+                        completion_tokens = usage.get("completion_tokens", 0)
+                except (json.JSONDecodeError, KeyError):
+                    continue
     yield (
         prompt_tokens or estimate_tokens(SYSTEM_PROMPT + user_prompt),
         completion_tokens or estimate_tokens(total_content),
