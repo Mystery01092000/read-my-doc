@@ -2,13 +2,20 @@
 
 import json
 import uuid
+from unittest.mock import AsyncMock, patch
 
+import httpx
 import pytest
+import respx
 
+from app.config import settings
 from app.rag.generator import (
-    GeneratedAnswer,
     CitationItem,
+    GeneratedAnswer,
+    _call_groq,
+    _call_llm,
     _parse_llm_response,
+    _stream_groq,
     _strip_invalid_citations,
 )
 
@@ -74,3 +81,97 @@ def test_strip_invalid_citations_none_valid() -> None:
     cleaned = _strip_invalid_citations(answer, valid_chunk_ids=set())
     assert cleaned.citations == []
     assert fake_id not in cleaned.answer
+
+
+# ── _call_groq tests ──────────────────────────────────────────────────────────
+
+
+@pytest.mark.asyncio
+@respx.mock
+async def test_call_groq_returns_text_and_tokens() -> None:
+    """_call_groq parses response text and token usage from Groq API."""
+    groq_url = f"{settings.groq_base_url}/chat/completions"
+    respx.post(groq_url).mock(return_value=httpx.Response(
+        200,
+        json={
+            "choices": [{"message": {"content": '{"answer": "test answer", "citations": []}'}}],
+            "usage": {"prompt_tokens": 10, "completion_tokens": 5},
+        },
+    ))
+
+    with patch.object(settings, "groq_api_key", "test-key"), \
+         patch.object(settings, "groq_model", "llama3-70b-8192"):
+        text, prompt_tokens, completion_tokens = await _call_groq("What is X?")
+
+    assert "test answer" in text
+    assert prompt_tokens == 10
+    assert completion_tokens == 5
+
+
+@pytest.mark.asyncio
+@respx.mock
+async def test_call_groq_fallback_tokens_when_usage_missing() -> None:
+    """_call_groq returns 0 tokens when usage field is absent."""
+    groq_url = f"{settings.groq_base_url}/chat/completions"
+    respx.post(groq_url).mock(return_value=httpx.Response(
+        200,
+        json={
+            "choices": [{"message": {"content": '{"answer": "hello", "citations": []}'}}],
+        },
+    ))
+
+    with patch.object(settings, "groq_api_key", "test-key"), \
+         patch.object(settings, "groq_model", "llama3-70b-8192"):
+        text, prompt_tokens, completion_tokens = await _call_groq("Hello?")
+
+    assert prompt_tokens == 0
+    assert completion_tokens == 0
+
+
+# ── _stream_groq tests ────────────────────────────────────────────────────────
+
+
+@pytest.mark.asyncio
+@respx.mock
+async def test_stream_groq_yields_tokens_then_usage() -> None:
+    """_stream_groq yields string tokens then a (prompt_tokens, completion_tokens) tuple."""
+    groq_url = f"{settings.groq_base_url}/chat/completions"
+
+    sse_lines = [
+        'data: {"choices": [{"delta": {"content": "Hello"}}]}\n',
+        'data: {"choices": [{"delta": {"content": " world"}}], "usage": {"prompt_tokens": 8, "completion_tokens": 2}}\n',
+        "data: [DONE]\n",
+    ]
+    sse_body = "".join(sse_lines)
+
+    respx.post(groq_url).mock(return_value=httpx.Response(
+        200,
+        content=sse_body.encode(),
+        headers={"content-type": "text/event-stream"},
+    ))
+
+    with patch.object(settings, "groq_api_key", "test-key"), \
+         patch.object(settings, "groq_model", "llama3-70b-8192"):
+        items: list[str | tuple[int, int]] = []
+        async for item in _stream_groq("Say hello"):
+            items.append(item)
+
+    str_tokens = [i for i in items if isinstance(i, str)]
+    final_tuple = items[-1]
+
+    assert "Hello" in str_tokens
+    assert " world" in str_tokens
+    assert isinstance(final_tuple, tuple)
+    assert len(final_tuple) == 2
+
+
+@pytest.mark.asyncio
+async def test_call_llm_dispatches_to_groq() -> None:
+    """_call_llm dispatches to _call_groq when llm_provider is 'groq'."""
+    with patch("app.rag.generator._call_groq", new_callable=AsyncMock) as mock_groq, \
+         patch.object(settings, "llm_provider", "groq"):
+        mock_groq.return_value = ("answer", 5, 3)
+        result = await _call_llm("test prompt")
+
+    mock_groq.assert_called_once_with("test prompt")
+    assert result == ("answer", 5, 3)
