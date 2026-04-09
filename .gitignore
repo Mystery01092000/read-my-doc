@@ -4,38 +4,54 @@ __pycache__/
 *.pyo
 .venv/
 venv/
+env/
 *.egg-info/
 dist/
 build/
 .pytest_cache/
-.mypy_cache/
-.ruff_cache/
 htmlcov/
 .coverage
-coverage.xml
+.ruff_cache/
 
 # Node
 node_modules/
 dist/
-.DS_Store
+.next/
+*.tsbuildinfo
+frontend/dist/
 
-# Env
+# Environment
 .env
-.env.local
-.env.*.local
-
-# Docker volumes (local)
-data/
+.env.*
+!.env.example
 
 # IDE
-.idea/
 .vscode/
+.idea/
 *.swp
 *.swo
-
-# Alembic
-alembic/versions/*.pyc
-
-# OS
 .DS_Store
 Thumbs.db
+
+# Docker
+*.tar
+
+# Uploads / data
+/data/
+backend/uploads/
+
+# Internal tooling
+.claude/
+.agent/
+.stitch/
+.playwright-mcp/
+
+# Dev artifacts (test scripts, loose screenshots)
+test_*.mjs
+sc*.png
+sc_*.png
+[0-9][0-9]-*.png
+
+# Logs
+*.log
+celery*.pid
