@@ -1,3 +1,4 @@
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -6,6 +7,16 @@ class Settings(BaseSettings):
 
     # Database
     database_url: str = "postgresql+asyncpg://amd_user:amd_pass@localhost:5432/ask_my_docs"
+
+    @field_validator("database_url")
+    @classmethod
+    def normalize_database_url(cls, v: str) -> str:
+        """Normalize Supabase/Heroku-style postgres:// URLs to postgresql+asyncpg://."""
+        if v.startswith("postgres://"):
+            return v.replace("postgres://", "postgresql+asyncpg://", 1)
+        if v.startswith("postgresql://"):
+            return v.replace("postgresql://", "postgresql+asyncpg://", 1)
+        return v
 
     # Redis / Celery
     redis_url: str = "redis://localhost:6379/0"
