@@ -11,11 +11,18 @@ class Settings(BaseSettings):
     @field_validator("database_url")
     @classmethod
     def normalize_database_url(cls, v: str) -> str:
-        """Normalize Supabase/Heroku-style postgres:// URLs to postgresql+asyncpg://."""
+        """Normalize Supabase/Heroku-style postgres:// URLs to postgresql+asyncpg://.
+        Also appends ssl=require for non-local connections (Supabase requires it).
+        """
         if v.startswith("postgres://"):
-            return v.replace("postgres://", "postgresql+asyncpg://", 1)
-        if v.startswith("postgresql://"):
-            return v.replace("postgresql://", "postgresql+asyncpg://", 1)
+            v = v.replace("postgres://", "postgresql+asyncpg://", 1)
+        elif v.startswith("postgresql://"):
+            v = v.replace("postgresql://", "postgresql+asyncpg://", 1)
+        # Append ssl=require for remote hosts (Supabase drops plain TCP connections)
+        is_local = "localhost" in v or "127.0.0.1" in v
+        has_ssl = "ssl=" in v or "sslmode=" in v
+        if not is_local and not has_ssl:
+            v += "&ssl=require" if "?" in v else "?ssl=require"
         return v
 
     # Redis / Celery
