@@ -60,7 +60,7 @@ export function MessageBubble({ message }: Props) {
                 <div className="group/meta relative inline-flex items-center gap-1 cursor-default">
                   <Info className="w-3 h-3 text-on-surface-variant/40" />
                   <span className="text-[9px] font-bold text-on-surface-variant/40 uppercase tracking-widest">
-                    {message.tokenUsage.total_tokens} Intelligence Units
+                    {message.tokenUsage.totalTokens} Intelligence Units
                   </span>
                   
                   {/* Tooltip for usage details */}
@@ -68,15 +68,15 @@ export function MessageBubble({ message }: Props) {
                      <div className="glass-panel p-3 rounded-lg border-white/5 text-[9px] whitespace-nowrap space-y-1 shadow-2xl">
                         <div className="flex justify-between gap-4">
                            <span className="text-on-surface-variant uppercase tracking-widest">LLM Compute</span>
-                           <span className="text-primary font-bold">{message.tokenUsage.llm_tokens}</span>
+                           <span className="text-primary font-bold">{message.tokenUsage.llmTokens}</span>
                         </div>
                         <div className="flex justify-between gap-4">
                            <span className="text-on-surface-variant uppercase tracking-widest">Neural Embed</span>
-                           <span className="text-primary font-bold">{message.tokenUsage.embedding_tokens}</span>
+                           <span className="text-primary font-bold">{message.tokenUsage.embeddingTokens}</span>
                         </div>
                         <div className="flex justify-between gap-4">
                            <span className="text-on-surface-variant uppercase tracking-widest">Link Rerank</span>
-                           <span className="text-primary font-bold">{message.tokenUsage.rerank_tokens}</span>
+                           <span className="text-primary font-bold">{message.tokenUsage.rerankTokens}</span>
                         </div>
                      </div>
                   </div>

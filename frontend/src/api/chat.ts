@@ -86,14 +86,14 @@ export const chatApi = {
                 type: "token" | "citations" | "token_usage";
                 content?: string;
                 citations?: Message["citations"];
-                token_usage?: TokenUsage;
+                token_usage?: Record<string, number>;
               };
               if (parsed.type === "token" && parsed.content) {
                 onToken(parsed.content);
               } else if (parsed.type === "citations" && parsed.citations) {
                 onCitations(parsed.citations);
               } else if (parsed.type === "token_usage" && parsed.token_usage) {
-                const u = parsed.token_usage as Record<string, number>;
+                const u = parsed.token_usage;
                 onTokenUsage({
                   promptTokens: u.prompt_tokens ?? 0,
                   completionTokens: u.completion_tokens ?? 0,
