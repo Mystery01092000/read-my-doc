@@ -34,6 +34,21 @@ class Settings(BaseSettings):
     # Redis / Celery
     redis_url: str = "redis://localhost:6379/0"
 
+    @field_validator("redis_url")
+    @classmethod
+    def normalize_redis_url(cls, v: str) -> str:
+        """Upgrade redis:// to rediss:// (TLS) for external hosts such as Upstash.
+        Docker service names (redis, localhost) are left unchanged.
+        """
+        import re
+
+        host_match = re.search(r"@([^:/]+)", v)
+        host = host_match.group(1) if host_match else ""
+        is_external = "." in host and host not in ("127.0.0.1",)
+        if is_external and v.startswith("redis://"):
+            v = "rediss://" + v[len("redis://"):]
+        return v
+
     # JWT
     jwt_secret_key: str = "change-me-to-a-long-random-secret"
     jwt_algorithm: str = "HS256"
