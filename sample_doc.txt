@@ -1,0 +1,40 @@
+Ask My Docs - Sample Test Document
+====================================
+
+This document is designed to test the full RAG pipeline:
+upload → parse → chunk → embed → retrieve → generate.
+
+## What is RAG?
+
+Retrieval-Augmented Generation (RAG) combines a retrieval system with a
+language model. Instead of relying solely on the LLM's training data,
+RAG fetches relevant passages from your own documents and provides them
+as context when generating answers.
+
+## How Ask My Docs Works
+
+1. Upload: You upload a document (PDF, TXT, DOCX, etc.)
+2. Parse: The text is extracted from the file.
+3. Chunk: The text is split into overlapping chunks (~400 tokens each).
+4. Embed: Each chunk is converted to a vector using BAAI/bge-small-en-v1.5.
+5. Index: Vectors are stored in pgvector for fast similarity search.
+6. Query: Your question is embedded and the top-k nearest chunks are retrieved.
+7. Rerank: A cross-encoder reranks the results for relevance.
+8. Generate: The top chunks are sent to the LLM as context for the final answer.
+
+## Key Technologies
+
+- Backend: FastAPI + SQLAlchemy (async) + PostgreSQL + pgvector
+- Worker: Celery + Redis
+- Embeddings: sentence-transformers (BAAI/bge-small-en-v1.5, 384-dim)
+- Reranker: cross-encoder/ms-marco-MiniLM-L-6-v2
+- LLM: Ollama (local) or Groq (cloud free tier)
+- Frontend: React 18 + TypeScript + Tailwind CSS
+
+## Sample Questions to Ask
+
+- What is RAG?
+- How does Ask My Docs process documents?
+- What embedding model is used?
+- What are the key technologies in this project?
+- How many steps are in the document processing pipeline?
