@@ -49,7 +49,7 @@ class Settings(BaseSettings):
     # Groq (OpenAI-compatible, free tier at console.groq.com)
     groq_api_key: str = ""
     groq_base_url: str = "https://api.groq.com/openai/v1"
-    groq_model: str = "llama3-70b-8192"
+    groq_model: str = "llama-3.3-70b-versatile"
 
     # Embeddings / Reranking
     embedding_model: str = "BAAI/bge-small-en-v1.5"

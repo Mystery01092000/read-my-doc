@@ -399,13 +399,16 @@ async def _stream_groq(user_prompt: str) -> AsyncIterator[str | tuple[int, int]]
                     break
                 try:
                     data = json.loads(data_str)
-                    if token := data["choices"][0]["delta"].get("content", ""):
-                        total_content += token
-                        yield token
+                    # usage-only chunks (stream_options include_usage) have empty choices
+                    choices = data.get("choices", [])
+                    if choices:
+                        if token := choices[0]["delta"].get("content", ""):
+                            total_content += token
+                            yield token
                     if usage := data.get("usage"):
                         prompt_tokens = usage.get("prompt_tokens", 0)
                         completion_tokens = usage.get("completion_tokens", 0)
-                except (json.JSONDecodeError, KeyError):
+                except (json.JSONDecodeError, KeyError, IndexError):
                     continue
     yield (
         prompt_tokens or estimate_tokens(SYSTEM_PROMPT + user_prompt),
