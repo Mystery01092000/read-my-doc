@@ -27,7 +27,11 @@ async def _process_document_async(document_id_str: str) -> None:
     from app.documents.repository import DocumentRepository
     from app.rag.embedder import embed_texts
 
-    engine = create_async_engine(settings.database_url, pool_pre_ping=True)
+    engine = create_async_engine(
+        settings.database_url,
+        pool_pre_ping=True,
+        connect_args={"statement_cache_size": 0},
+    )
     session_factory = async_sessionmaker(engine, expire_on_commit=False)
 
     document_id = uuid.UUID(document_id_str)

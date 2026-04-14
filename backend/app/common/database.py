@@ -11,6 +11,9 @@ engine = create_async_engine(
     pool_pre_ping=True,
     pool_size=10,
     max_overflow=20,
+    # Supabase uses PgBouncer in transaction pool mode which doesn't support
+    # prepared statements. Setting cache size to 0 disables them.
+    connect_args={"statement_cache_size": 0},
 )
 
 AsyncSessionLocal = async_sessionmaker(
