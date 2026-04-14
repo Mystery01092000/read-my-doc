@@ -18,4 +18,8 @@ celery_app.conf.update(
     task_track_started=True,
     task_acks_late=True,
     worker_prefetch_multiplier=1,
+    # Don't use Redis pub/sub for result tracking — document status is in the DB.
+    # This prevents ConnectionError on Upstash Redis (free tier drops pub/sub connections).
+    task_ignore_result=True,
+    result_backend=None,
 )

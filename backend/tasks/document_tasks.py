@@ -7,7 +7,7 @@ from pathlib import Path
 from tasks.worker import celery_app
 
 
-@celery_app.task(bind=True, name="tasks.process_document", max_retries=3, default_retry_delay=30)
+@celery_app.task(bind=True, name="tasks.process_document", max_retries=3, default_retry_delay=30, ignore_result=True)
 def process_document(self, document_id: str) -> dict:  # type: ignore[type-arg]
     """Parse, chunk, embed, and index a document. Runs in a Celery worker process."""
     try:
