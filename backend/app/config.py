@@ -12,16 +12,22 @@ class Settings(BaseSettings):
     @classmethod
     def normalize_database_url(cls, v: str) -> str:
         """Normalize Supabase/Heroku-style postgres:// URLs to postgresql+asyncpg://.
-        Also appends ssl=require for non-local connections (Supabase requires it).
+        Appends ssl=require only for real external hosts (contain a dot, e.g. supabase.co).
+        Docker service names (db, postgres) and localhost never get ssl=require.
         """
+        import re
+
         if v.startswith("postgres://"):
             v = v.replace("postgres://", "postgresql+asyncpg://", 1)
         elif v.startswith("postgresql://"):
             v = v.replace("postgresql://", "postgresql+asyncpg://", 1)
-        # Append ssl=require for remote hosts (Supabase drops plain TCP connections)
-        is_local = "localhost" in v or "127.0.0.1" in v
+        # Only add SSL for real FQDNs — host has a dot (e.g. aws-0.pooler.supabase.com)
+        # Docker service names (db, redis) and localhost have no dots in the host part
+        host_match = re.search(r"@([^:/]+)", v)
+        host = host_match.group(1) if host_match else ""
+        is_external = "." in host and host not in ("127.0.0.1",)
         has_ssl = "ssl=" in v or "sslmode=" in v
-        if not is_local and not has_ssl:
+        if is_external and not has_ssl:
             v += "&ssl=require" if "?" in v else "?ssl=require"
         return v
 
